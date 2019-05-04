@@ -1,4 +1,5 @@
 import $ from "jquery";
+import { onLoadHtmlSuccess } from "../core/includes";
 
 const duration = 600;
 
@@ -24,7 +25,7 @@ $.fn.photoButtons = function () {
         photos.add($(e).attr("wm-person"))
     });
 
-    const buttons = Array.from(photos).map(city => {
+    const buttons = Array.from(photos).map(person => {
         const btn = $("<button>").addClass(["btn", "btn-info"]).html(person);
         btn.click(e => filterByPerson(person));
         return btn;
@@ -41,4 +42,6 @@ $.fn.photoButtons = function () {
     return this;
 }
 
-$("[wm-photo-buttons]").photoButtons();
+onLoadHtmlSuccess(function() {
+    $("[wm-photo-buttons]").photoButtons();
+})
